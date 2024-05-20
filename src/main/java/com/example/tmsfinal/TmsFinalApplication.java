@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TmsFinalApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TmsFinalApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(TmsFinalApplication.class, args);
+    }
 }
