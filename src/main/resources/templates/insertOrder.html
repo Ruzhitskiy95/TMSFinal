@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <!-- Кодировка веб-страницы -->
+    <meta charset="utf-8">
+    <!-- Настройка viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Auto-selection</title>
+
+    <!-- Bootstrap CSS (Cloudflare CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"
+          integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- jQuery (Cloudflare CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+            integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap Bundle JS (Cloudflare CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"
+            integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand text-uppercase text-danger" href="#"><h1>Автоподбор</h1></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8081/user/findAllOrders"><h2>Просмотр</h2></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8081/user/getInsert"><h2>Добавление</h2></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8081/user/updateOrder"><h2>Редактирование</h2></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8081/user/deleteOrder"><h2>Удаление</h2></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- content -->
+<div class = container-fluid>
+<form action="http://localhost:8081/user/insertOrder" method="POST">
+    <div>
+        <fieldset>
+            <legend>ЗАЯВКА НА АВТОПОДБОР</legend>
+            <div>
+                <label for="brand_id">Марка</label>
+                <input id = "brand_id" name="brand" type="text" list="brand_list">
+                <datalist id="brand_list">
+                    <select>
+                        <option value="Toyota"></option>
+                        <option value="BMW"></option>
+                        <option value="Opel"></option>
+                        <option value="Renault"></option>
+                        <option value="Audi"></option>
+                        <option value="Hyundai"></option>
+                    </select>
+                </datalist>
+            </div>
+            <div>
+                <label for="model_id">Модель</label>
+                <input id = "model_id" name="model" type="text" list="model_list">
+                <datalist id="model_list">
+                    <select>
+                        <option value="Camry"></option>
+                        <option value="M5"></option>
+                        <option value="Ampera"></option>
+                        <option value="Logan"></option>
+                        <option value="A4"></option>
+                        <option value="Creta"></option>
+                    </select>
+                </datalist>
+            </div>
+            <div>
+                <label for="releaseDateFrom_id">Год выпуска от</label>
+                <input id="releaseDateFrom_id" type="number" min="1900" max="2024" step="1"  name="releaseDateFrom">
+                <label for="releaseDateTo_id">Год выпуска до</label>
+                <input id="releaseDateTo_id" type="number" min="1900" max="2024" step="1"  name="releaseDateTo">
+            </div>
+            <div>
+            <label for="engineCapacityFrom_id">Объем двигателя от</label>
+            <input id="engineCapacityFrom_id" name="engineCapacityFrom" type="number" min="1200" max="2400" step="100" >
+            <label for="engineCapacityTo_id">Объем двигателя до</label>
+            <input id="engineCapacityTo_id" name="engineCapacityTo" type="number" min="1200" max="2400" step="100" >
+            </div>
+            <div>
+                <fieldset style="display:inline">
+                    <legend>Трансмиссия</legend>
+                    <input type="radio" name="transmission" value="Auto"> Автомат
+                    <input type="radio" name="transmission" value="Mechanic"> Механика
+                </fieldset>
+            </div>
+            <div>
+                Тип кузова
+                <select name="carBody" size="1">
+                    <option value="Sedan">Cедан</option>
+                    <option value="Hatchback">Хетчбек</option>
+                    <option value="Universal">Универсал</option>
+                    <option value="SUV">Внедорожник</option>
+                    <option value="Cabriolet">Кабриолет</option>
+                </select>
+            </div>
+            <div>
+                <fieldset style="display:inline">
+                    <legend>Тип двигателя</legend>
+                    <input type="radio" name="engineType" value="Gas"> Бензин
+                    <input type="radio" name="engineType" value="Diesel"> Дизель
+                    <input type="radio" name="engineType" value="EV"> Электро
+                </fieldset>
+            </div>
+                <div>
+                    <label for="priceFrom_id">Цена от</label>
+                    <input id="priceFrom_id" name="priceFrom" type="number" min="100" max="1000000" >
+                    <label for="priceTo_id">Цена до</label>
+                    <input id="priceTo_id" name="priceTo" type="number" min="100" max="1000000">
+                </div>
+        </fieldset>
+    </div>
+
+    <div>
+        <input type=submit value="Отправить">
+    </div>
+</form>
+</div>
+<!-- content end-->
+<footer>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 Copyright:
+        <a class="text-body">Bootstrap for TeachMeSkills</a>
+    </div>
+</footer>
+</body>
+</html>
+
+
