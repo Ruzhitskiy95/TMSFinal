@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+<!--    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">-->
+
+    <!-- CSS Reset : BEGIN -->
+</head>
+
+<body >
+    <div style="max-width: 600px; margin: 0 auto;" class="email-container">
+        <!-- BEGIN BODY -->
+        <div>Здравствуйте, <span th:text="${firstName}"></span>!</div>
+        <div><b>Ваша заявка: </b></div>
+        <div><b>Номер заявки: </b><span th:text="${id}"></span></div>
+        <div><b>Марка: </b><span th:text="${brand}"></span></div>
+        <div><b>Модель: </b><span th:text="${model}"></span></div>
+        <div><b>Год выпуска:, </b><span th:text="${releaseDate}"></span></div>
+        <div><b>Объем двигателя: </b><span th:text="${engineCapacity}"></span></div>
+        <div><b>Трансмиссия: </b><span th:text="${transmission}"></span></div>
+        <div><b>Кузов: </b><span th:text="${carBody}"></span></div>
+        <div><b>Цена: </b><span th:text="${price}"></span></div>
+        <div><b><span th:text="${status}"></span></b></div>
+    </div>
+</body>
+</html>
