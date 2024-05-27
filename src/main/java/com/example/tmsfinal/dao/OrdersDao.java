@@ -37,7 +37,7 @@ public interface OrdersDao extends JpaRepository<Order, Long>, CrudRepository<Or
 
     Order save(Order order);
 
-    List<Order> findAll();
+    List<Order> findAllByOrderById();
 
     @Query(value = "Select MAX(ord.id) as maxId from orders as ord", nativeQuery = true)
     Integer getMaxId();

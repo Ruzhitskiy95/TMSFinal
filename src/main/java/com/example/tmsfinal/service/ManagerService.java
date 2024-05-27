@@ -4,15 +4,11 @@ package com.example.tmsfinal.service;
 import com.example.tmsfinal.dao.OrderManagerDao;
 import com.example.tmsfinal.dao.OrdersDao;
 import com.example.tmsfinal.dao.UsersDao;
-import com.example.tmsfinal.dto.ConvertEntityDTO;
-import com.example.tmsfinal.dto.UserManagerDepartmentDTO;
-import com.example.tmsfinal.dto.UserManagerInfoDTO;
 import com.example.tmsfinal.model.EmailContext;
 import com.example.tmsfinal.model.Order;
 import com.example.tmsfinal.model.Users;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -39,10 +35,10 @@ public class ManagerService {
     OrderManagerDao orderManagerDao;
 
     public List<Order> findAllOrders() {
-        return ordersDao.findAll();
+        return ordersDao.findAllByOrderById();
     }
 
-    public List<Order> updateOrderStatus( String status, Integer id) throws MessagingException {
+    public List<Order> updateOrderStatus( String status, Integer id, String statusView) throws MessagingException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String dateTime = now.format(formatter);
@@ -74,10 +70,29 @@ public class ManagerService {
                 "price", " от " + order.getPriceFrom().toString() + " до " + order.getPriceTo().toString(),
                 "status", statusEmail));
 
-        defaultEmailService.sendMail(emailContext);
-        return ordersDao.findAll();
+//        defaultEmailService.sendMail(emailContext);
+
+        List<Order> orders = new ArrayList<>();
+
+        if (statusView.equals("viewAllOrders")){
+            orders = ordersDao.findAll();
+        }
+        if (statusView.equals("viewInProcessingOrders")) {
+            orders = orderManagerDao.findAllByStatusManager("In processing");
+        }
+        if (statusView.equals("viewAcceptedOrders")){
+            orders = orderManagerDao.findAllByStatusManager("Accepted");
+        }
+        if (statusView.equals("viewClosedOrders")){
+            orders = orderManagerDao.findAllByStatusManager("Processed");
+        }
+        return orders;
+
     }
 
+    public List<Order> findAllByStatus(String status) {
+        return ordersDao.findAll();
+    }
 //
 //    public List<UserManagerDepartmentDTO> getManagerService() {
 //        String nameuser = SecurityContextHolder.getContext().getAuthentication().getName();
