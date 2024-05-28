@@ -3,7 +3,6 @@ package com.example.tmsfinal.controller;
 import com.example.tmsfinal.dao.OrderManagerDao;
 import com.example.tmsfinal.dao.OrdersDao;
 import com.example.tmsfinal.dao.UsersDao;
-import com.example.tmsfinal.model.Order;
 import com.example.tmsfinal.service.ManagerService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +27,6 @@ public class ManagerController {
     @Autowired
     OrderManagerDao orderManagerDao;
 
-//    @GetMapping("/manager/findAllOrders")
-//    public ModelAndView findAllOrders(){
-//        return new ModelAndView("findAllOrdersForManager","orderList",managerService.findAllOrders());
-//    }
     @GetMapping("/manager/viewAllOrdersStatus")
     public ModelAndView orderStatus(){
         return new ModelAndView("findAllOrdersForManager","orderList",managerService.findAllOrders());

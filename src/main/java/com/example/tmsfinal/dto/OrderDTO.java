@@ -1,75 +1,61 @@
-package com.example.tmsfinal.model;
+package com.example.tmsfinal.dto;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "orders")
-public class Order {
+public class OrderDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+
     private Integer id;
 
-    @Column(name = "brand")
+
     private  String brand;
 
-    @Column(name = "model")
+
     private  String model;
 
-    @Column(name = "releasedatefrom")
+
     private  Integer releaseDateFrom;
 
-    @Column(name = "releasedateto")
+
     private  Integer releaseDateTo;
 
-    @Column(name = "enginecapacityfrom")
+
     private  Integer engineCapacityFrom;
 
-    @Column(name = "enginecapacityto")
+
     private  Integer engineCapacityTo;
 
-    @Column(name = "transmission")
+
     private  String transmission;
 
-    @Column(name = "carbody")
+
     private  String carBody;
 
-    @Column(name = "enginetype")
+
     private  String engineType;
 
-    @Column(name = "pricefrom")
+
     private  Integer priceFrom;
 
-    @Column(name = "priceto")
+
     private  Integer priceTo;
 
-    @Column(name = "createddate")
+
     private Date createdData;
 
-    @Column(name = "acceptdate")
-    private Date acceptDate;
 
-    @Column(name = "closedate")
-    private Date closeDate;
-
-    @Column(name = "status")
     private  String status;
 
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Users users;
-
-
-    public Order() {
+    public OrderDTO() {
     }
 
-    public Order(Integer id, String brand, String model, Integer releaseDateFrom, Integer releaseDateTo, Integer engineCapacityFrom, Integer engineCapacityTo, String transmission, String carBody, String engineType, Integer priceFrom, Integer priceTo, Date createdData, Date acceptDate, Date closeDate, String status, Users users) {
+    public OrderDTO(Integer id, String brand, String model, Integer releaseDateFrom, Integer releaseDateTo, Integer engineCapacityFrom, Integer engineCapacityTo, String transmission, String carBody, String engineType, Integer priceFrom, Integer priceTo, Date createdData, String status) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -83,28 +69,6 @@ public class Order {
         this.priceFrom = priceFrom;
         this.priceTo = priceTo;
         this.createdData = createdData;
-        this.acceptDate = acceptDate;
-        this.closeDate = closeDate;
-        this.status = status;
-        this.users = users;
-    }
-
-    public Order(Integer id, String brand, String model, Integer releaseDateFrom, Integer releaseDateTo, Integer engineCapacityFrom, Integer engineCapacityTo, String transmission, String carBody, String engineType, Integer priceFrom, Integer priceTo, Date createdData, Date acceptDate, Date closeDate, String status) {
-        this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.releaseDateFrom = releaseDateFrom;
-        this.releaseDateTo = releaseDateTo;
-        this.engineCapacityFrom = engineCapacityFrom;
-        this.engineCapacityTo = engineCapacityTo;
-        this.transmission = transmission;
-        this.carBody = carBody;
-        this.engineType = engineType;
-        this.priceFrom = priceFrom;
-        this.priceTo = priceTo;
-        this.createdData = createdData;
-        this.acceptDate = acceptDate;
-        this.closeDate = closeDate;
         this.status = status;
     }
 
@@ -212,22 +176,6 @@ public class Order {
         this.createdData = createdData;
     }
 
-    public Date getAcceptDate() {
-        return acceptDate;
-    }
-
-    public void setAcceptDate(Date acceptDate) {
-        this.acceptDate = acceptDate;
-    }
-
-    public Date getCloseDate() {
-        return closeDate;
-    }
-
-    public void setCloseDate(Date closeDate) {
-        this.closeDate = closeDate;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -236,17 +184,9 @@ public class Order {
         this.status = status;
     }
 
-    public Users getUsers() {
-        return users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
-    }
-
     @Override
     public String toString() {
-        return "Order{" +
+        return "OrderDTO{" +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
@@ -260,10 +200,7 @@ public class Order {
                 ", priceFrom=" + priceFrom +
                 ", priceTo=" + priceTo +
                 ", createdData=" + createdData +
-                ", acceptDate=" + acceptDate +
-                ", closeDate=" + closeDate +
                 ", status='" + status + '\'' +
-//                ", users=" + users +
                 '}';
     }
 }
