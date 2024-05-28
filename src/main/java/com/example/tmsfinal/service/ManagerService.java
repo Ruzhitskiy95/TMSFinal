@@ -70,12 +70,12 @@ public class ManagerService {
                 "price", " от " + order.getPriceFrom().toString() + " до " + order.getPriceTo().toString(),
                 "status", statusEmail));
 
-//        defaultEmailService.sendMail(emailContext);
+        defaultEmailService.sendMail(emailContext);
 
         List<Order> orders = new ArrayList<>();
 
         if (statusView.equals("viewAllOrders")){
-            orders = ordersDao.findAll();
+            orders = ordersDao.findAllByOrderById();
         }
         if (statusView.equals("viewInProcessingOrders")) {
             orders = orderManagerDao.findAllByStatusManager("In processing");
@@ -90,39 +90,9 @@ public class ManagerService {
 
     }
 
-    public List<Order> findAllByStatus(String status) {
-        return ordersDao.findAll();
-    }
-//
-//    public List<UserManagerDepartmentDTO> getManagerService() {
-//        String nameuser = SecurityContextHolder.getContext().getAuthentication().getName();
-//        List<Users> usersSpringSecurities = usersDao.getUsersManagerDepartment(nameuser, 5);
-//
-//        List<UserManagerDepartmentDTO> userManagerDepartmentDTOS = new ArrayList<>();
-//        ConvertEntityDTO convertEntityDTO = new ConvertEntityDTO();
-//        for (Users users : usersSpringSecurities) {
-//            userManagerDepartmentDTOS.add(convertEntityDTO.mapToUserManagerDepartmentDTO(users));
-//        }
-//
-//        System.out.println(usersSpringSecurities.toString());
-//        return userManagerDepartmentDTOS;
+//    public List<Order> findAllByStatus(String status) {
+//        return ordersDao.findAll();
 //    }
-//
-//    public List<UserManagerInfoDTO> getUsersInfoService() {
-//        String nameuser = SecurityContextHolder.getContext().getAuthentication().getName();
-//        List<Users> usersSpringSecurities = usersDao.getUserManagerInfo(nameuser,5);
-//
-//        List<UserManagerInfoDTO> userManagerInfoDTOS = new ArrayList<>();
-//        ConvertEntityDTO convertEntityDTO = new ConvertEntityDTO();
-//        for (Users users : usersSpringSecurities) {
-//            userManagerInfoDTOS.add(convertEntityDTO.mapToUserManagerInfoDTO(users));
-//        }
-//
-//        System.out.println(usersSpringSecurities.toString());
-//        return userManagerInfoDTOS;
-//    }
-
-
 }
 
 

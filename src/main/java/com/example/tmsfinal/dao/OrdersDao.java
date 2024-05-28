@@ -15,19 +15,6 @@ import java.util.List;
 
 public interface OrdersDao extends JpaRepository<Order, Long>, CrudRepository<Order, Long> {
 
-//    @Transactional
-//    @Modifying
-//    @Query(value = "INSERT INTO orders SET carmodel = :model, carmounth = :mounth, cartypebody = :typebody, carengine = :engine, cartransmission = :transmission, carenginevolume = :volume WHERE id = :id", nativeQuery = true)
-//
-//    void updateById(@Param("model") final String model,
-//                    @Param("mounth") final Integer mounth,
-//                    @Param("typebody") final String typebody,
-//                    @Param("engine") final Integer engine,
-//                    @Param("transmission") final String transmission,
-//                    @Param("volume") final Integer volume,
-//                    @Param("id") final Integer id);
-//
-//}
 
     @Transactional
     @Modifying
@@ -75,12 +62,6 @@ public interface OrdersDao extends JpaRepository<Order, Long>, CrudRepository<Or
                     @Param("pricefromparam") final Integer pricefromparam,
                     @Param("pricetoparam") final Integer pricetoparam,
                     @Param("idparam") final Integer idparam);
-
-
-
-
-
-//    void deleteAllById(Integer id);
 
     @Query(value = "Select * from orders where users_id = :usersIdParam order by orders.id", nativeQuery = true)
     List<Order> findAllByUsersId(@Param("usersIdParam") final Integer usersIdParam);

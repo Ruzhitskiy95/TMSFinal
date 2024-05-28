@@ -16,11 +16,5 @@ public class TmsFinalApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        String mikalai = new BCryptPasswordEncoder().encode("Mikalai");
 //        System.out.println("Mikalai = " + mikalai);
-//        String vlad = new BCryptPasswordEncoder().encode("Vlad");
-//        System.out.println("Vlad = " + vlad);
-//        String alex = new BCryptPasswordEncoder().encode("Alex");
-//        System.out.println("Alex = " + alex);
-//        String nick = new BCryptPasswordEncoder().encode("Nick");
-//        System.out.println("Nick = " + nick);
     }
 }

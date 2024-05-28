@@ -25,7 +25,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand text-uppercase text-danger" href="#"><h1>Автоподбор</h1></a>
+        <a class="navbar-brand text-uppercase text-danger" href="#"><h1>Автоподбор (Admin)</h1></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,56 +33,64 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8081/user/findAllOrders"><h2>Просмотр</h2></a>
+                    <a class="nav-link" href="http://localhost:8081/admin/findAllUsers"><h2>Права доступа</h2></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8081/user/getInsert"><h2>Добавление</h2></a>
+                    <a class="nav-link" href="http://localhost:8081/admin/changeStatus"><h2>Блокировка пользователя</h2></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8081/user/updateOrder"><h2>Редактирование</h2></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8081/user/deleteOrder"><h2>Удаление</h2></a>
-                </li>
+
             </ul>
         </div>
     </div>
 </nav>
 
+<!-- content -->
+<div class = container-fluid>
+    <form action="http://localhost:8081/admin/viewChangeRoleUsers" method="POST">
+        <div>
+            <fieldset>
+                <legend>Изменение роли пользователя</legend>
+                <div>
+                    <label for="updateOrder_id">Укажите номер пользователя</label>
+                    <input id="updateOrder_id" type="number" min="1" max="10000000" step="1"  name="id" required>
+                </div>
+                <div>
+                    <fieldset style="display:inline">
+                        <legend>Роль пользователя</legend>
+                        <input type="radio" name="role" value="3" checked> Пользователь
+                        <input type="radio" name="role" value="2"> Менеджер
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+
+        <div>
+            <input type=submit value="Подтвердить">
+        </div>
+    </form>
+</div>
+<!-- content end-->
+
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">Номер заявки</th>
-        <th scope="col">Марка</th>
-        <th scope="col">Модель</th>
-        <th scope="col">Год выпуска от</th>
-        <th scope="col">Год выпуска до</th>
-        <th scope="col">Объем двигателя от</th>
-        <th scope="col">Объем двигателя до</th>
-        <th scope="col">Трансмиссия</th>
-        <th scope="col">Тип кузова</th>
-        <th scope="col">Цена от</th>
-        <th scope="col">Цена до</th>
-        <th scope="col">Дата формирования заявки</th>
+        <th scope="col">Номер пользователя</th>
+        <th scope="col">Почта</th>
+        <th scope="col">Логин</th>
+        <th scope="col">Имя</th>
         <th scope="col">Статус</th>
+        <th scope="col">Роль</th>
+
     </tr>
     </thead>
         <tbody class="table-striped">
-        <tr th:each="order : ${orderList}">
-            <td th:utext="${order.id}"></td>
-            <td th:utext="${order.brand}"></td>
-            <td th:utext="${order.model}"></td>
-            <td th:utext="${order.releaseDateFrom}"></td>
-            <td th:utext="${order.releaseDateTo}"></td>
-            <td th:utext="${order.engineCapacityFrom}"></td>
-            <td th:utext="${order.engineCapacityTo}"></td>
-            <td th:utext="${order.transmission}"></td>
-            <td th:utext="${order.carBody}"></td>
-            <td th:utext="${order.priceFrom}"></td>
-            <td th:utext="${order.priceTo}"></td>
-            <td th:utext="${order.createdData}"></td>
-            <td th:utext="${order.status}"></td>
-
+        <tr th:each="user : ${usersList}">
+            <td th:utext="${user.id}"></td>
+            <td th:utext="${user.email}"></td>
+            <td th:utext="${user.login}"></td>
+            <td th:utext="${user.name}"></td>
+            <td th:utext="${user.status}"></td>
+            <td th:utext="${user.role}"></td>
         </tr>
 
         </tbody>

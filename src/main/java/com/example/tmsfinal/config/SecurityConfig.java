@@ -35,11 +35,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth->auth
+                        .requestMatchers("/registration").permitAll()
+                        .requestMatchers("/registrationUser").permitAll()
                         .requestMatchers("/loginToken").authenticated()
                         .requestMatchers("/login").authenticated()
                         .requestMatchers("/engineer").hasRole("Engineer")
                         .requestMatchers("/admin/**").hasRole("Admin")
                         .requestMatchers("/manager/**").hasRole("Manager")
+                        .requestMatchers("/user/**").hasRole("User")
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .anyRequest().authenticated())
                 .userDetailsService(userService)

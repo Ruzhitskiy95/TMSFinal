@@ -8,43 +8,34 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConvertEntityDTO {
 
-//    public TasksEngineerDTO mapToTaskEngineerDTO (Order task){
-//        TasksEngineerDTO tasksEngineerDTO = new TasksEngineerDTO();
-//        tasksEngineerDTO.setCreatedData(task.getCreatedData());
-//        tasksEngineerDTO.setDescriptions(task.getDescriptions());
-//        return tasksEngineerDTO;
-//    }
-//
-//
-//    public UserManagerDepartmentDTO mapToUserManagerDepartmentDTO (Users users){
-//        UserManagerDepartmentDTO userManagerDepartmentDTO = new UserManagerDepartmentDTO();
-//        userManagerDepartmentDTO.setDepartment(users.getDepartment());
-//        userManagerDepartmentDTO.setUsername(users.getUsername());
-//        userManagerDepartmentDTO.setKol(users.getKol());
-//        return userManagerDepartmentDTO;
-//    }
-//
-//    public UserManagerInfoDTO mapToUserManagerInfoDTO (Users users){
-//        UserManagerInfoDTO userManagerInfoDTO = new UserManagerInfoDTO();
-//        userManagerInfoDTO.setUsername(users.getUsername());
-//        userManagerInfoDTO.setDepartment(users.getDepartment());
-//        userManagerInfoDTO.setTaskSSES(users.getTasks());
-//        return userManagerInfoDTO;
-//    }
-//
-//    public UsersDepartmentByMounthDTO mapToTaskDepartmentByMounth  (Users users){
-//        UsersDepartmentByMounthDTO usersDepartmentByMounthDTO = new UsersDepartmentByMounthDTO();
-//        usersDepartmentByMounthDTO.setDepart(users.getDepartment());
-//        usersDepartmentByMounthDTO.setKol(users.getKol());
-//        return usersDepartmentByMounthDTO;
-//    }
-//
-//    public InfoAndDepartmentDTO mapToManagerInfoAndDepartmentDTO (Users users){
-//        InfoAndDepartmentDTO infoAndDepartmentDTO = new InfoAndDepartmentDTO();
-//        infoAndDepartmentDTO.setDepartment(users.getDepartment());
-//        infoAndDepartmentDTO.setTaskSSES(users.getTasks());
-//        infoAndDepartmentDTO.setUsername(users.getUsername());
-//        return infoAndDepartmentDTO;
-//    }
+    public AdminDTO usersRolesMapAdminChangeRoleDTO (Users users){
+        AdminDTO adminDTO = new AdminDTO();
+        adminDTO.setId(users.getId());
+        adminDTO.setEmail(users.getEmail());
+        adminDTO.setLogin(users.getLogin());
+        adminDTO.setName(users.getName());
+        adminDTO.setStatus(users.getStatus());
+        adminDTO.setRole(users.getRoles().get(0).getRole());
+        return adminDTO;
+    }
+
+    public OrderDTO orderMapOrderDTO (Order order){
+        OrderDTO orderDTO= new OrderDTO();
+        orderDTO.setId(order.getId());
+        orderDTO.setBrand(order.getBrand());
+        orderDTO.setModel(order.getModel());
+        orderDTO.setReleaseDateFrom(order.getReleaseDateFrom());
+        orderDTO.setReleaseDateTo(order.getReleaseDateTo());
+        orderDTO.setEngineCapacityFrom(order.getEngineCapacityFrom());
+        orderDTO.setEngineCapacityTo(order.getEngineCapacityTo());
+        orderDTO.setTransmission(order.getTransmission());
+        orderDTO.setCarBody(order.getCarBody());
+        orderDTO.setPriceFrom(order.getPriceFrom());
+        orderDTO.setPriceTo(order.getPriceTo());
+        orderDTO.setCreatedData(order.getCreatedData());
+        orderDTO.setStatus(order.getStatus());
+        return orderDTO;
+    }
+
 
 }
