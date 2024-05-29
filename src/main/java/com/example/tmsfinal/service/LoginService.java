@@ -2,6 +2,8 @@ package com.example.tmsfinal.service;
 
 
 import com.example.tmsfinal.config.JwtService;
+import com.example.tmsfinal.dao.UsersDao;
+import com.example.tmsfinal.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +21,10 @@ public class LoginService {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private UsersDao usersDao;
+
 
 
     public String loginTokenService(String username, String password){
@@ -38,7 +44,9 @@ public class LoginService {
     public ResponseEntity<String> loginService (){
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         System.out.println(login);
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login,login));
+        Users user = usersDao.findUsersByLogin(login);
+        String password = user.getPassword();
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login,password));
         if (authentication.isAuthenticated()){
             String token = jwtService.createToken(login);
             System.out.println(token);

@@ -39,7 +39,6 @@ public class SecurityConfig {
                         .requestMatchers("/registrationUser").permitAll()
                         .requestMatchers("/loginToken").authenticated()
                         .requestMatchers("/login").authenticated()
-                        .requestMatchers("/engineer").hasRole("Engineer")
                         .requestMatchers("/admin/**").hasRole("Admin")
                         .requestMatchers("/manager/**").hasRole("Manager")
                         .requestMatchers("/user/**").hasRole("User")
@@ -55,30 +54,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//    public UserDetailsService users () {
-//        UserDetails admin = User.builder()
-//                .username("Alex")
-//                .password(passwordEncoder().encode("Alex"))
-//                .roles("Admin")
-//                .build();
-//        UserDetails managerOne = User.builder()
-//                .username("Tom")
-//                .password(passwordEncoder().encode("Tom"))
-//                .roles("Manager")
-//                .build();
-//        UserDetails managerTwo = User.builder()
-//                .username("Nick")
-//                .password(passwordEncoder().encode("Nick"))
-//                .roles("Manager")
-//                .build();
-//        UserDetails engineer  = User.builder()
-//                .username("Rikki")
-//                .password(passwordEncoder().encode("Rikki"))
-//                .roles("Engineer")
-//                .build();
-//        return new InMemoryUserDetailsManager(admin,managerOne,managerTwo, engineer);
-//    }
 
     @Bean
     public AuthenticationProvider authenticationProvider (){
