@@ -89,10 +89,6 @@ public class ManagerService {
         return orders;
 
     }
-
-//    public List<Order> findAllByStatus(String status) {
-//        return ordersDao.findAll();
-//    }
 }
 
 

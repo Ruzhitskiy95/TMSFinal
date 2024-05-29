@@ -1,4 +1,4 @@
-package com.example.tmsfinal.service;
+package com.example.tmsfinal.dao;
 
 
 import com.example.tmsfinal.model.EmailContext;

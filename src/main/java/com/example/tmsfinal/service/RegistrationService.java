@@ -23,7 +23,6 @@ public class RegistrationService {
         String password = new BCryptPasswordEncoder().encode(userPassword);
         users.setPassword(password);
         users.setStatus("Active");
-
         usersDao.save(users);
         Integer maxId = usersDao.getMaxUserId();
         usersDao.insertRole(maxId);
